@@ -1,0 +1,89 @@
+.recommendedArticles {
+  padding: 2em var(--sitePadding);
+  width: 100%;
+
+  .title {
+    margin-bottom: 1em;
+    font-size: 1.2em;
+    color: var(--textColor);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .recommendedContainer {
+    --gap: 1em;
+    --cardHeight: 200px;
+    --cardWidth: 260px;
+    defaultContainer(100%);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: var(--gap);
+
+    .recommended {
+      position: relative;
+      height: var(--cardHeight);
+      width: var(--cardWidth);
+      border-radius: 10px;
+
+      a {
+        .background {
+          height: 100%;
+          width: 100%;
+          border-radius: @border-radius;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-color: #00000099;
+          background-blend-mode: overlay;
+        }
+
+        .content {
+          --fontSize: 1em;
+          padding: 1em;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: @height;
+          width: @width;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          flex-direction: column;
+          border-radius: @border-radius;
+          font-family: 'Poppins', sans-serif;
+
+          .postTitle {
+            font-size: var(--fontSize);
+            font-weight: 500;
+            text-align: center;
+            color: var(--secondaryColor);
+          }
+
+          .discription {
+            font-size: calc(var(--fontSize) - 0.2em);
+            text-align: center;
+            color: lighten(#868688, 40%);
+          }
+
+          .readMore {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            .icon {
+              height: var(--iconSize);
+              width: var(--iconSize);
+            }
+
+            .readMoreText {
+              font-size: 1em;
+              color: var(--themeColor);
+            }
+          }
+        }
+      }
+    }
+  }
+}

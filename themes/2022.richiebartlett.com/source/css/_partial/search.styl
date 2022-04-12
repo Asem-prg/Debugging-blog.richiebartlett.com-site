@@ -1,0 +1,98 @@
+.searchSection {
+  --edgeSpacing: 2em;
+  position: fixed;
+  top: -100vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1em;
+  width: calc(100vw - (var(--sitePadding) * 2));
+  max-height: calc(100vh - (var(--navBarHeight) * 2) - (var(--edgeSpacing) * 2));
+  background-color: var(--searchColor);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 -1px 15px var(--shadowColor);
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  overflow-x: auto;
+  transition: 0.3s ease-in-out;
+  z-index: 5;
+
+  .searchDialog {
+    margin-bottom: 1em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 0.5em
+
+    .icon {
+      padding: 0.4em;
+      display: flex;
+
+      svg {
+        height: calc(var(--iconSize) / 1.5);
+
+        path {
+          // fill: #FFFFFF !important;
+        }
+      }
+
+      &.close {
+        background-color: #FFFFFF66;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid var(--neutralColor);
+      }
+    }
+
+    #local-search-input {
+      padding: 0.5em;
+      display: inline-block;
+      flex-grow: 1;
+      background-color: #FFFFFF66;
+      color: var(--footerColor);
+      border: 1px solid var(--neutralColor);
+      border-radius: 5px;
+    }
+  }
+
+  #local-search-result {
+    .search-result-list {
+      li {
+        &:not(:last-child) {
+          position: relative;
+          margin-bottom: 1em;
+
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: -0.5em;
+            height: 1px;
+            width 100%;
+            background-color: var(--footerColor);
+            border-radius: 1px;
+          }
+        }
+
+        .search-result-title {
+          display: block;
+          color: var(--textColor);
+          // color: #FFFFFF;
+          font-size: 1em;
+          font-weight: 500;
+        }
+
+        .search-result {
+          color: var(--footerColor);
+          // color: #FFFFFF88;
+          font-size: 0.8em;
+          font-weight: 00;
+
+          .search-keyword {
+            background-color: var(--themeColor);
+            color: #FFFFFF88;
+          }
+        }
+      }
+    }
+  }
+}

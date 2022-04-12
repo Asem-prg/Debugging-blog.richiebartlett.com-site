@@ -1,0 +1,71 @@
+<%
+  var getRandomImage = function () {
+    var imgs = theme.imgs;
+    var randomImg = Math.floor(Math.random() * imgs.length);
+    return theme.imgs[randomImg];
+  }
+
+  var isImageExists = function (img) {
+    var image = new Image();
+
+    img.onload = () => {
+      return img;
+    }
+
+    img.onerror = () => {
+      return false;
+    }
+  }
+%>
+
+<section class="postsContainer">
+
+  <% site.posts.forEach(function (post, i) { %>
+    <article class="post" style="<% if (theme.cardDirection == 'shuffle' && i % 2 == 0) { %>
+      flex-direction: row;
+    <% } else if (theme.cardDirection == 'right') { %>
+      flex-direction: row;
+    <% } else if (theme.cardDirection == 'left') { %>
+      flex-direction: row-reverse;
+    <% } %>">
+      <div class="content">
+        <div class="author">
+          <div class="authorinfo">
+            <%- image_tag(url_for(theme.logoImage.url), {alt: 'Author', class: 'authorImage'}) %>
+            <div class="textSection">
+              <h3 class="authorName"><%- config.author %></h3>
+              <p class="postPeriod"><%- date(Date.now() - post.date, 'D') %> days ago</p>
+            </div>
+          </div>
+          <span class="postTime">
+            <span class="icon"></span><%- date(post.date, 'YYYY-MM-DD') %>
+          </span>
+        </div>
+        <div class="postTitle">
+          <a href="<%- url_for(post.path) %>"><%- post.title %></a>
+        </div>
+        <div class="tags">
+          <%- partial('_partial/tags.ejs', {source: post}) %>
+        </div>
+        <div class="categories">
+          <%- partial('_partial/categories.ejs', {source: post}) %>
+        </div>
+        <div class="description">
+          <p class="discriptionText"><%- truncate(strip_html(post.content), {length: 130}) %></p>
+        </div>
+        <div class="desktopActionBar">
+          <%- partial('_partial/posts/actionBar.ejs') %>
+        </div>
+      </div>
+      <div class="postImage">
+        <a href="<%- url_for(post.path) %>">
+          <div class="background lazyload" data-src="<%- url_for(getRandomImage()) %>"></div>
+        </a>
+        <div class="mobileActionBar">
+          <%- partial('_partial/posts/actionBar.ejs') %>
+        </div>
+      </div>
+    </article>
+  <% }) %>
+
+</section>

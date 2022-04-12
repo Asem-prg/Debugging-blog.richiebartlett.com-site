@@ -1,0 +1,126 @@
+<section class="hero">
+
+  <% if (theme.swiper.on) { %>
+    <div class="swiper swiperContainer">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="background lazyload" data-src="<%- url_for(theme.swiper.image) %> "></div>
+          <div class="content">
+            <h1 class="title"><%- theme.swiper.title %></h1>
+
+            <% if (theme.typed.on) { %>
+              <div>
+                <p class="description typing"></p>
+              </div>
+            <% } %> 
+
+          </div>
+        </div>
+  
+        <% site.posts.sort('-date').each(function (post) { %>
+      
+          <% if(post.swiper === true) { %>
+            <div class="swiper-slide">
+              <div class="background lazyload" data-src="<%- url_for(post.swiperImg) %> "></div>
+              <div class="content">
+                <a href="<%- url_for(post.path) %>">
+                  <h1 class="title"><%- post.title %></h1>
+                </a>
+                <p class="description">
+                  <%- truncate(strip_html(post.content), {length: 60}) %>
+                </p>
+                <span>
+                  <a href="<%- url_for(post.path) %>" class="button"><%- __('readMore') %></a>
+                </span>
+              </div>
+            </div>
+          <% } %>
+      
+        <% }) %>
+      </div>
+
+      <% if (theme.swiper.nextButton) { %>
+        <div class="swiper-button-next"></div>
+      <% } %>
+
+      <% if (theme.swiper.prevButton) { %>
+        <div class="swiper-button-prev"></div>
+      <% } %>
+
+      <% if (theme.swiper.pagination) { %>
+        <div class="swiper-pagination"></div>
+      <% } %>
+
+    </div>
+
+    <%- js('/js/swiper/swiper.min.js') %>
+
+  <% } else { %>
+    <div class="swiper swiperContainer">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="background lazyload" data-src="<%- url_for(theme.swiper.image) %> "></div>
+          <div class="content">
+            <h1 class="title"><%- theme.swiper.title %></h1>
+            <p class="description"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% } %>
+
+  <% if (theme.wave.on) { %>
+    <%- partial('_partial/wave.ejs') %>
+  <% } %>
+
+</section>
+
+<script>
+  var autoPlay = JSON.parse('<%- theme.swiper.autoPlay %>');
+  var delay = JSON.parse('<%- theme.swiper.delay %>');
+
+  var swiper = new Swiper(".swiperContainer", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: (autoPlay) ? {
+      delay: delay,
+      disableOnInteraction: false,
+    } : false,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+
+<% if (theme.typed.on) { %>
+  <%- js('/js/typedJS/typed.min.js') %>
+
+  <script>
+    // var strings = JSON.parse('<%#- theme.swiper.description %>');
+    var typeSpeed = JSON.parse('<%- theme.typed.typeSpeed %>');
+    var backSpeed = JSON.parse('<%- theme.typed.backSpeed %>');
+    var shuffle = JSON.parse('<%- theme.typed.shuffle %>');
+    var backDelay = JSON.parse('<%- theme.typed.backDelay %>');
+    var loop = JSON.parse('<%- theme.typed.loop %>');
+    // var loopCount = JSON.parse('<%#- theme.typed.loopCount %>');
+    var showCursor = JSON.parse('<%- theme.typed.showCursor %>');
+    // var cursorChar = JSON.parse('<%#- theme.typed.cursorChar %>');
+
+    var typed = new Typed('.typing', {
+      strings: ['Father', 'Entrepreneur', 'Platform Architect', 'Adventurer', 'Philospher', 'Academic', 'Adult Fan of LEGO'],
+      typeSpeed: typeSpeed,
+      backSpeed: backSpeed,
+      shuffle: shuffle,
+      backDelay: backDelay,
+      loop: loop,
+      loopCount: Infinity,
+      showCursor: showCursor,
+      cursorChar: '|',
+    });
+  </script>
+<% } %> 

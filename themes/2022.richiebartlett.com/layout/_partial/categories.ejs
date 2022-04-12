@@ -1,0 +1,10 @@
+<% if (source.categories && source.categories.length) { %>
+
+  <% if (theme.menu.categories.icon) { %>
+    <span class="icon"><%- theme.menu.categories.icon %></span>
+  <% } %>
+
+  <%- list_categories(source.categories, {class: 'categories', 
+                              show_count: false,
+                              depth: 1}) %> 
+<% } %>

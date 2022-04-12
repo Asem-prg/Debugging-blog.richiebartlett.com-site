@@ -1,0 +1,462 @@
+.header {
+	height: var(--navBarHeight);
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--navBarColor);
+	// backdrop-filter: blur(30px); // If this is disable, the rest will work
+	box-shadow: 0 1px 15px var(--shadowColor);
+	transition: 0.3s ease-in-out;
+	z-index: 10;
+
+	&.inTop {
+		height: 10vh;
+		background-color: transparent;
+		// backdrop-filter: unset;
+		box-shadow: unset;
+
+		.blogLogo {
+			background-color: transparent;
+			backdrop-filter: unset;
+		}
+	}
+
+	.blogLogo {
+		padding: 0 var(--sitePadding);
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: var(--navBarColor);
+		backdrop-filter: blur(30px);
+
+		blogLogo(2.6vh);
+
+		.burger {
+			--sliceHeight: calc(var(--iconSize) / 10);
+			width: var(--iconSize);
+			height: var(--iconSize);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+
+			.burgerSlice {
+				display: inline-block;
+				position: relative;
+				width: var(--iconSize);
+				height: var(--sliceHeight);
+				border-radius: calc(var(--sliceHeight) / 2);
+				background-color: var(--themeColor);
+
+				&::after,
+				&::before {
+					content: '';
+					position: absolute;
+					left: 0;
+					bottom: calc(var(--sliceHeight) * 3);
+					width: var(--iconSize);
+					height: var(--sliceHeight);
+					border-radius: calc(var(--sliceHeight) / 2);
+					background-color: var(--themeColor);
+				}
+
+				&::before {
+					top: calc(var(--sliceHeight) * 3);
+					bottom: 0;
+				}
+			}
+		}
+	}
+
+	.navBar {
+		padding: 0 var(--sitePadding);
+		height: var(--navBarHeight);
+		width: 100%;
+		position: fixed;
+		top: calc(100vh - var(--navBarHeight));
+		left: 0;
+		background-color: var(--navBarColor);
+		backdrop-filter: blur(30px);
+		box-shadow: 0 -1px 15px var(--shadowColor);
+		z-index: 10;
+
+		.menu {
+			width: 100%;
+			height: 100%
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.menuItem {
+				a,
+				.search {
+					position: relative;
+					width: 100%;
+					height: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+					transition: 0.2s ease-in-out;
+
+					.menuIcon {
+						display: flex;
+
+						svg {
+							height: var(--iconSize);
+						}
+					}
+
+					.name {
+						color: var(--textColor);
+						font-size: 0.6em;
+						font-family: "Poppins", sans-serif;
+					}
+				}
+
+				.search {
+					z-index: 1;
+
+					&::after {
+						content: '';
+						position: absolute;
+						height: calc(var(--navBarHeight) - 6px);
+						width: calc(var(--navBarHeight) - 6px);
+						background-color: var(--primaryColor);
+						border-radius: 50%;
+						transition: 0.3s ease-in-out;
+						z-index: -1;
+						opacity: 0;
+					}
+				}
+			}
+		}
+	}
+
+	.union {
+		height: calc(100vh - (var(--navBarHeight) * 2));
+		width: 100%;
+		position: fixed;
+		top: var(--navBarHeight);
+		left: 100vw;
+		background-color: var(--navBarColor);
+		backdrop-filter: blur(30px);
+		transition: 0.3s ease-in-out;
+
+		.accordionMenu {
+			padding: 0 var(--sitePadding);
+			height: calc(100% - var(--navBarHeight));
+			width: 100%;
+			overflow-y: auto;
+			overflow-x: hidden;
+
+			.logoImage {
+				padding: 2em 0;
+				height: calc(100% / 3.5);
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				img {
+					height: 100%;
+				}
+			}
+
+			.menu {
+				height: calc(100% - (100% / 3.5));
+				width: 100%;
+
+				.accordion {
+					height: 100%;
+					width: 100%;
+
+					.accordionItem {
+						margin: 5px 0;
+						font-family: "Poppins", sans-serif;
+						cursor: pointer;
+
+						&.active,
+						&:focus-within {
+							.accordionName {
+								&::after,
+								&::before {
+									content: '';
+									position: absolute;
+									top: 50%;
+									height: 2px;
+									width: 8px;
+									background-color: var(--textColor);
+									transform: rotate(45deg) translate(calc(-50% + 1px), 0);
+								}
+
+								&::before {
+									transform: rotate(-45deg) translate(calc(50% - 1px), 0);
+								}
+							}
+
+							.accordionSub {
+								height: auto;
+							}
+						}
+
+						.accordionName {
+							position: relative;
+							padding: 5px;
+							display: flex;
+							align-items: center;
+							font-size: 1em;
+							color: var(--textColor);
+
+							&::after,
+							&::before {
+								content: '';
+								position: absolute;
+								top: 50%;
+								right: 1em;
+								height: 2px;
+								width: 8px;
+								background-color: var(--textColor);
+								transform: rotate(45deg) translate(0, calc(-100% - 1px));
+								transition: 0.2s ease-in-out;
+							}
+
+							&::before {
+								transform: rotate(-45deg) translate(0, calc(100% + 1px));
+							}
+
+							&:hover {
+								background-color: var(--hoverColor);
+								border-radius: 5px;
+							}
+
+							svg {
+								margin-right: 0.5em;
+								height: var(--iconSize);
+							}
+						}
+
+						.accordionSub {
+							height: 0;
+							overflow: hidden;
+							transition: 0.2s ease-in-out;
+
+							.accordionSubItem {
+								a {
+									padding: 0.5em 1em 0.5em;
+									display: block;
+									color: var(--textColor);
+									border-radius: 5px;
+
+									&:hover,
+									&:focus {
+										color: var(--secondaryColor);
+										background-color: var(--themeColor);
+									}
+								}
+
+								themeSwitcher();
+							}
+						}
+					}
+				}
+			}
+		}
+
+		socialIcons(var(--textColor), var(--sitePadding));
+	}
+}
+
+#search {
+	display: none;
+
+	&:checked {
+		~ {
+			.searchSection {
+				top: calc(var(--navBarHeight) + var(--edgeSpacing));
+			}
+		}
+	}
+}
+
+#open {
+	display: none;
+
+	&:checked {
+		~ {
+			.header {
+				height: var(--navBarHeight);
+				background-color: var(--navBarColor);
+				box-shadow: 0 1px 15px var(--shadowColor);
+
+				.blogLogo {
+					background-color: var(--navBarColor);
+					backdrop-filter: blur(30px);
+				}
+
+				.union {
+					left: 0;
+				}
+
+				.burger {
+					.burgerSlice {
+						&::after,
+						&::before {
+							right: 0;
+							left: unset;
+							width: calc(var(--iconSize) / 2);
+							transform: rotate(45deg) translate(32%, 32%);
+						}
+
+						&::before {
+							transform: rotate(-45deg) translate(32%, -32%);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 825px) {
+	.header {
+		padding: 0 var(--sitePadding);
+		backdrop-filter: blur(30px);
+
+		&.inTop {
+			backdrop-filter: unset;
+
+			.navBar {
+				.menu {
+					.menuItem {
+						a,
+						.search {
+							&::before {
+								background-color: #FFFFFF;
+							}
+
+							.menuIcon {
+								svg {
+									--textColor: #FFFFFF;
+								}
+							}
+
+							.name {
+								color: #FFFFFF;
+							}
+						}
+					}
+				}
+			}
+
+			.union {
+				.socialContainer {
+					.social {
+						.socialItem {
+							a {
+								.socialIcon {
+									svg {
+										--textColor: #FFFFFF;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.blogLogo {
+			padding: 0;
+			width: auto;
+			background-color: transparent;
+			backdrop-filter: unset;
+
+			.burger {
+				display: none;
+			}
+		}
+
+		.navBar {
+			position: static;
+			padding: 0;
+			width: auto;
+			background-color: transparent;
+			backdrop-filter: unset;
+			box-shadow: unset;
+
+			.menu {
+				gap: 1em;
+
+				.menuItem {
+					a,
+					.search {
+						width: unset;
+						cursor: pointer;
+						flex-direction: row;
+
+						&::before {
+							content: "";
+							position: absolute;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							height: 2px;
+							transform: scaleX(0);
+							transform-origin: left;
+							transition: 0.2s ease-in-out;
+							background-color: var(--textColor);
+						}
+
+						.menuIcon {
+							svg {
+								height: calc(var(--iconSize) / 1.5);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.union {
+			position: static;
+			height: 100%;
+			width: auto;
+			background-color: transparent;
+			backdrop-filter: unset;
+
+			.accordionMenu {
+				display: none;
+			}
+
+			.socialContainer {
+				padding: 0;
+				height: 100%;
+
+				.social {
+					.socialItem {
+						height: calc(var(--iconSize) / 1.5);
+						width: calc(var(--iconSize) / 1.5);
+
+						a {
+							height: calc(var(--iconSize) / 1.5);
+							width: calc(var(--iconSize) / 1.5);
+
+							.socialIcon {
+								svg {
+									height: calc(var(--iconSize) / 1.5);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

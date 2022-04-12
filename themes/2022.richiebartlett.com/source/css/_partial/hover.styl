@@ -1,0 +1,190 @@
+@media (hover: hover) and (pointer: fine) {
+  /* mouse pointer required device */
+#search {
+	&:checked {
+		~ {
+			.header {
+				.navBar {
+					.menu {
+						.menuItem {
+							.search {
+								&::before  {
+									transform: scaleX(1.1);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+  .header {
+    .navBar {
+      .menu {
+        .menuItem {
+          a,
+          .search {
+            &:hover,
+            &:focus-within {
+              &::before {
+                transform: scaleX(1.1);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .recommendedArticles {
+    .recommendedContainer {
+      .recommended {
+        * {
+          transition: 0.3s ease-in-out;
+        }
+
+        a {
+          .content {
+            transform: translateY(10%);
+
+            .postTitle {
+              opacity: 0;
+            }
+
+            .discription {
+              transition-delay: 0.1s;
+              opacity: 0;
+            }
+
+            .readMore {
+              .icon {
+                --iconPositionY: calc(((var(--cardHeight) / 2) - (((var(--iconSize) * var(--scaleValue)) / 2) + 26px)) * -1);
+                --iconPositionX: calc((var(--cardWidth) / 2) - (((var(--iconSize) * var(--scaleValue)) / 2) + 66px));
+                --scaleValue: 3;
+
+                svg {
+                  transform: scale(var(--scaleValue)) translate(var(--iconPositionX), var(--iconPositionY));
+                }
+              }
+
+              .readMoreText {
+                transition-delay: 0.2s;
+                opacity: 0;
+              }
+            }
+          }
+        }
+
+        &:hover,
+        &:focus-within {
+          a {
+            .content {
+              transform: translateY(0);
+
+              .postTitle {
+                opacity: 1;
+              }
+
+              .discription {
+                opacity: 1;
+              }
+
+              .readMore {
+                .icon {
+                  svg {
+                    transform: scale(1) translate(0);
+                  }
+                }
+
+                .readMoreText {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .postsContainer {
+    .post {
+      .postTitle {
+        a {
+          hoverLinks();
+        }
+      }
+
+      .categories {
+        .categories-list {
+          .categories-list-item {
+            .categories-list-link {
+              hoverLinks();
+            }
+          }
+        }
+      }
+
+      .postImage {
+        a {
+          &:hover,
+          &:focus-within {
+            .background {
+              transform: scale(1.1);
+            }
+          }
+
+          .background {
+            transition: 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  /* touchscreen device */
+#search {
+	&:checked {
+		~ {
+			.header {
+				.navBar {
+					.menu {
+						.menuItem {
+							.search {
+								&::after {
+									opacity: 1;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+  .header {
+    .navBar {
+      .menu {
+        .menuItem {
+          a {
+            &:hover,
+            &:focus-within {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev,
+  .swiper-pagination {
+    display: none !important;
+  }
+}

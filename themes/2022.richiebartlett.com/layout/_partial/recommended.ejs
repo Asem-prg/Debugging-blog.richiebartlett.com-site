@@ -1,0 +1,42 @@
+<%
+  var getRandomImage = function () {
+    var imgs = theme.imgs;
+    var randomImg = Math.floor(Math.random() * imgs.length);
+    return theme.imgs[randomImg];
+  }
+%>
+
+<% if (page.current === 1 && theme.recommended.on === true) { %>
+  <div class="recommendedArticles">
+    <h1 class="title"><%- __('recommendedArticles') %></h1>
+    <div class="recommendedContainer">
+
+      <% site.posts.sort('-date').forEach(function (post, i) { %>
+
+        <% if (post.top) { %>
+          <div class="recommended">
+            <a href="<%- url_for(post.path) %>">
+              <div class="background lazyload" data-src="<%- url_for(getRandomImage()) %>"></div>
+              <div class="content">
+                <h3 class="postTitle"><%= post.title %></h3>
+                <p class="discription"><%- truncate(strip_html(post.content), {length: 60}) %></p>
+                <div class="readMore">
+                  <span class="icon">
+
+                    <% if (theme.icons.see) { %>
+                      <%- theme.icons.see %> 
+                    <% } %>
+
+                  </span>
+                  <p class="readMoreText"><%- __('readMore') %></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% } %>
+
+      <% }) %>
+
+    </div>
+  </div>
+<% } %>

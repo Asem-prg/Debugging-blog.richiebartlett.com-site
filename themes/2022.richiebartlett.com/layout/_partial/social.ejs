@@ -1,0 +1,17 @@
+<ul class="social">
+
+  <% Object.keys(theme.social).forEach(function(item) { %>
+    <li class="socialItem">
+      <a href="<%- url_for(theme.social[item].url) %>">
+
+        <% if(theme.social[item].icon && theme.social[item].icon.length > 0) {%>
+          <div class="socialIcon">
+            <%- theme.social[item].icon %>
+          </div>
+        <% } %>
+
+      </a>
+    </li>
+  <% }); %>
+
+</ul>

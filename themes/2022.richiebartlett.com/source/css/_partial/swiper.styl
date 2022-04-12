@@ -1,0 +1,77 @@
+.hero {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  .swiper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .swiper-wrapper {
+      width: 100%;
+      height: 100%;
+
+      .swiper-slide {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .background {
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-color: #00000099;
+          background-blend-mode: overlay;
+          filter: blur(10px);
+        }
+
+        .content {
+          width: fit-content;
+          max-width: 90%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          gap: 1em;
+
+          .title {
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 400;
+            font-family: serif;
+            letter-spacing: 4px;
+          }
+
+          .description {
+            // max-width: 70%;
+            display: inline-block;
+            line-height: 0;
+            color: var(--neutralColor);
+            text-align: center;
+            font-size: 0.8em;
+						font-family: "Poppins", sans-serif;
+          }
+
+          span {
+            &:not(.typed-cursor) {
+              margin-top: 1em;
+
+              .button {
+                secondaryButton();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

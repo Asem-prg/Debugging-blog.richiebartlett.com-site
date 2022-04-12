@@ -1,0 +1,42 @@
+<footer class="footer">
+  <div class="informationSect">
+    <div class="blogLogo">
+      <a href="/" class="logo" title="Richie Logo"><%- partial('_partial/logo.ejs') %></a>
+    </div>
+    <div class="links">
+
+      <% Object.keys(theme.linksMenu).forEach(function(title) { %>
+
+        <% if (title !== 'themeSwitcher' && title !== 'statistics') { %>
+          <ul class="linksContainer">
+            <li class="linksHeader">
+              <h1 class="linksTitle"><%- (__(title)) ? __(title) : title %></h1>
+              <ul class="linksList">
+
+                <% Object.keys(theme.linksMenu[title]).forEach(function(child) { %>
+
+                  <% if (child !== 'icon') { %>
+                    <li class="linkItem">
+                      <%- link_to(url_for(theme.linksMenu[title][child].url), (__(child)) ? __(child) : child) %>
+                    </li>
+                  <% } %>
+
+                <% }); %>
+
+              </ul>
+            </li>
+          </ul>
+        <% } %>
+
+      <% }); %>
+    </div>
+  </div>
+  <div class="copyrightsSect">
+    <div class="copyright">
+      <p class="text">&copy; Copyright 2007 ~ <%- date(Date.now(), 'yyyy') %><noscript>2022</noscript> <%- config.title %></p>
+    </div>
+    <div class="socialContainer">
+      <%- partial('_partial/social.ejs') %>
+    </div>
+  </div>
+</footer>

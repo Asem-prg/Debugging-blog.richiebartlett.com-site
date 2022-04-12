@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+	<%- partial('_partial/head.ejs') %>
+</head>
+<body>
+	<%- js(url_for('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')) %>
+	<%- partial('_partial/header.ejs') %>
+
+	<% if (theme.search.on) { %>
+		<%- partial('_partial/search.ejs') %>
+	<% } %>
+
+	<main class="main"><%- body %></main>
+	<%- partial('_partial/footer.ejs') %>
+	<%- js(url_for('/js/script.js')) %>
+	<%- js(url_for('/js/lazyLoad.js')) %>
+</body>
+</html>

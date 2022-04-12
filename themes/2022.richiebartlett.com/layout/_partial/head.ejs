@@ -1,0 +1,59 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="Content-Language" content="<%= config.language %>" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="CACHE-CONTROL" content="Public" />
+<meta http-equiv="PRAGMA" content="Cache-Control" />
+
+<!-- META http-equiv="EXPIRES" content="Sun, 01 Jul 2012 00:00:01 GMT" / -->
+<meta name="DC.creator" content="<%= config.author %> - <%= config.url %>" />
+<meta name="DC.language" content="<%= config.language %>" />
+<meta name="copyright" content="Copyright 2022" />
+<meta name="keywords" content="<%= config.keywords %>" />
+<meta name="description" content="<%= config.description %>" />
+<meta name="Author" content="<%= config.author %>" />
+<meta name="revisit-after" content="7 days" />
+<meta name="distribution" content="global" />
+<meta name="rating" content="general" />
+<meta name="robots" content="ALL" />
+
+<!-- (Robot commands: All, None, Index, No Index, Follow, No Follow) -->
+<meta name="GOOGLEBOT" content="FOLLOW" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+<meta property="og:site_name" content="<%= config.title %>" />
+<meta property="og:locale" content="en_US" />
+<meta property="article:author" content="<%= config.author %>" />
+<meta property="article:tag" content="<%= config.keywords %>" />
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="<%= config.url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<%= config.title %>" />
+<meta property="og:description" content="<%= config.description %>" />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain" content="<%= config.title %>" />
+<meta property="twitter:url" content="<%= config.url %>" />
+<meta name="twitter:title" content="<%= config.title %>" />
+<meta name="twitter:description" content="<%= config.description %>" />
+
+<meta name="theme-color" content="<%= theme.colorScheme.theme %>" />
+<meta name="msapplication-navbutton-color" content="<%= theme.colorScheme.theme %>" />
+
+<title><%= config.title %></title>
+
+<%- css('/css/style.css') %>
+
+<% if (theme.swiper.on) { %>
+  <%- css('/css/swiper/swiper.min.css') %>
+<% } %>
+
+<%# if (theme.swiper.descriptionTyped) { %>
+  <%#- css('/css/typedJS/index.css') %>
+<%# } %>

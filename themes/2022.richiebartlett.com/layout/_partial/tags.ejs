@@ -1,0 +1,12 @@
+<% if (source.tags && source.tags.length) { %>
+
+  <% if (theme.menu.tags.icon) { %>
+    <span class="icon"><%- theme.menu.tags.icon %></span>
+  <% } %>
+
+  <%- list_tags(source.tags, {class: {ul: 'tagsContainer', 
+                                      li: 'tagItem', 
+                                      a: 'tag'}, 
+                              show_count: false,
+                              separator: ''}) %> 
+<% } %>

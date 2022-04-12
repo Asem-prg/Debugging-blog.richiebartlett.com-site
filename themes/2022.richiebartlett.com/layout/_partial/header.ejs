@@ -1,0 +1,114 @@
+<input type="checkbox" id="search">
+<input type="checkbox" id="open">
+<header class="header">
+	<div class="blogLogo">
+		<a href="/" class="logo" title="Richie Logo"><%- partial('_partial/logo.ejs') %></a>
+		<label class="burger" for="open">
+			<span class="burgerSlice"></span>
+		</label>
+	</div>
+	<nav class="navBar">
+		<ul class="menu">
+
+			<% Object.keys(theme.menu).forEach(function(item) { %>
+				<li class="menuItem">
+					<a href="<%- url_for(theme.menu[item].url) %>">
+
+						<% if(theme.menu[item].icon && theme.menu[item].icon.length > 0) {%>
+							<div class="menuIcon">
+								<%- theme.menu[item].icon %>
+							</div>
+						<% } %>
+
+						<span class="name"><%- (__(item)) ? __(item) : item %></span>
+					</a>
+				</li>
+			<% }); %>
+
+			<% if (theme.search.on) { %>
+				<li class="menuItem">
+					<label for="search" class="search">
+						<div class="menuIcon"><%- theme.search.icon %></div>
+						<span class="name"><%- (__('search')) ? __('search') : 'search' %></span>
+					</label>
+				</li>
+			<% } %>
+
+		</ul>
+	</nav>
+	<div class="union">
+		<div class="accordionMenu">
+
+			<% if (theme.logoImage.on) { %>
+				<div class="logoImage">
+					<%- image_tag(url_for(theme.logoImage.url), {alt: 'Logo Image'}) %> 
+				</div>
+			<% } %>
+
+			<div class="menu">
+				<ul class="accordion">
+
+					<% Object.keys(theme.linksMenu).forEach(function(title) { %>
+
+						<% if (title !== 'themeSwitcher' && title !== 'statistics') { %>
+							<li class="accordionItem">
+								<h1 class="accordionName">
+
+									<% if(theme.linksMenu[title].icon && theme.linksMenu[title].icon.length > 0) {%>
+										<%- theme.linksMenu[title].icon %>
+									<% } %>
+
+									<%- (__(title)) ? __(title) : title %>
+								</h1>
+								<ul class="accordionSub">
+
+									<% Object.keys(theme.linksMenu[title]).forEach(function(child) { %>
+
+										<% if (child !== 'icon') { %>
+											<li class="accordionSubItem">
+												<%- link_to(url_for(theme.linksMenu[title][child].url), (__(child)) ? __(child) : child) %>
+											</li>
+										<% } %>
+
+									<% }); %> 
+
+								</ul>
+							</li>
+							<hr>
+						<% } else { %>
+							<% if (theme.linksMenu[title].on) { %>
+								<li class="accordionItem">
+									<h1 class="accordionName">
+
+										<% if(theme.linksMenu[title].icon && theme.linksMenu[title].icon.length > 0) {%>
+											<%- theme.linksMenu[title].icon %>
+										<% } %>
+
+										<%- (__(title)) ? __(title) : title %>
+									</h1>
+									<ul class="accordionSub">
+										<li class="accordionSubItem">
+
+											<% if (title === 'themeSwitcher') { %>
+												<%- partial('_partial/themeSwitcher.ejs') %>
+											<% } else if (title === 'statistics') { %>
+												<%# partial('_partial/statistics.ejs') %>
+											<% } %>
+
+										</li>
+									</ul>
+								</li>
+								<hr>
+							<% } %>
+						<% } %>
+
+					<% }); %>
+
+				</ul>
+			</div>
+		</div>
+		<div class="socialContainer">
+			<%- partial('_partial/social.ejs') %>
+		</div>
+	</div>
+</header>
