@@ -104,3 +104,6 @@ theme: 2022.richiebartlett.com
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+search:
+  path: search.xml
